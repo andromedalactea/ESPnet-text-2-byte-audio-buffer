@@ -1,11 +1,16 @@
-from espnet2.bin.tts_inference import Text2Speech
-from espnet2.utils.types import str_or_none
-import torch
-from scipy.io.wavfile import write
-from speech_symbol_timestamps import audio_query_json
-import whisper_timestamped
+# Standard library imports
 import json
 import os
+
+# Third-party imports
+import torch
+from espnet2.bin.tts_inference import Text2Speech
+from espnet2.utils.types import str_or_none
+from scipy.io.wavfile import write
+import whisper_timestamped
+
+
+
 
 class ESPnetTextToByte:
     """
