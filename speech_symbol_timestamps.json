@@ -1,0 +1,99 @@
+{
+    "transcription": "本日は音声ごせいの説開よーごそう",
+    "segments": [
+        {
+            "segment_id": 0,
+            "start": 0.0,
+            "end": 1.58,
+            "symbols": [
+                {
+                    "text": "本",
+                    "start": 0.0,
+                    "end": 0.14
+                },
+                {
+                    "text": "日",
+                    "start": 0.14,
+                    "end": 0.36
+                },
+                {
+                    "text": "は",
+                    "start": 0.36,
+                    "end": 0.56
+                },
+                {
+                    "text": "音",
+                    "start": 0.56,
+                    "end": 0.74
+                },
+                {
+                    "text": "声",
+                    "start": 0.74,
+                    "end": 0.88
+                },
+                {
+                    "text": "ご",
+                    "start": 0.88,
+                    "end": 1.0
+                },
+                {
+                    "text": "せ",
+                    "start": 1.0,
+                    "end": 1.1
+                },
+                {
+                    "text": "い",
+                    "start": 1.1,
+                    "end": 1.2
+                },
+                {
+                    "text": "の",
+                    "start": 1.2,
+                    "end": 1.22
+                },
+                {
+                    "text": "説",
+                    "start": 1.22,
+                    "end": 1.42
+                },
+                {
+                    "text": "開",
+                    "start": 1.42,
+                    "end": 1.58
+                }
+            ]
+        },
+        {
+            "segment_id": 1,
+            "start": 1.76,
+            "end": 2.52,
+            "symbols": [
+                {
+                    "text": "よ",
+                    "start": 1.76,
+                    "end": 2.0
+                },
+                {
+                    "text": "ー",
+                    "start": 2.0,
+                    "end": 2.14
+                },
+                {
+                    "text": "ご",
+                    "start": 2.14,
+                    "end": 2.3
+                },
+                {
+                    "text": "そ",
+                    "start": 2.3,
+                    "end": 2.41
+                },
+                {
+                    "text": "う",
+                    "start": 2.41,
+                    "end": 2.52
+                }
+            ]
+        }
+    ]
+}
