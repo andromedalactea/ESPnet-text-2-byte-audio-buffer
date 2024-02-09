@@ -162,7 +162,7 @@ class ESPnetTextToByte:
                 pitch, and whether each word forms a question, along with some metadata about the audio processing.
         """
         # Load the model and transcribe the audio
-        model = whisper_timestamped.load_model("base", device="cpu")
+        model = whisper_timestamped.load_model("small", device=self.device)
         result = whisper_timestamped.transcribe(model, audio_path, language="ja")
         print("Complete transcription:", result["text"])
 
@@ -222,33 +222,29 @@ class ESPnetTextToByte:
 
 if __name__ == "__main__":
     
-    # # File paths for the pre-trained model, configuration, and input text
-    # model_path = "model/train.total_count.ave_10best.pth"
-    # config_file_path = "model/config.yaml"
-    # text_file_path = "text.txt"
+    # File paths for the pre-trained model, configuration, and input text
+    model_path = "model/train.total_count.ave_10best.pth"
+    config_file_path = "model/config.yaml"
+    text_file_path = "text.txt"
 
-    # # Vocoder tag specifying the type of vocoder to be used
-    # # its a voice encoder. it works by separate the carrier signal (which typically represents the spectral content of the voice) and the modulator signal (which represents the characteristics such as pitch and intensity).
-    # vocoder_tag = "none" # we can use vocoder_tag Parallel WaveGAN, and MelGAN  
+    # Vocoder tag specifying the type of vocoder to be used
+    # its a voice encoder. it works by separate the carrier signal (which typically represents the spectral content of the voice) and the modulator signal (which represents the characteristics such as pitch and intensity).
+    vocoder_tag = "none" # we can use vocoder_tag Parallel WaveGAN, and MelGAN  
 
-    # # Device on which the model will be loaded (default is "cpu")
-    # device = "cpu"  # Change to "cuda" for GPU acceleration if a compatible GPU is available
+    # Device on which the model will be loaded (default is "cpu")
+    device = "cpu"  # Change to "cuda" for GPU acceleration if a compatible GPU is available
 
-    
-
-    # # Initialize the espnet model
+    # Initialize the espnet model
     espnet = ESPnetTextToByte()
-    # espnet.build(model_path, config_file_path, vocoder_tag, device)
+    espnet.build(model_path, config_file_path, vocoder_tag, device)
 
-    # # Initialize output file path and and getbyte data
-    # output_path = "audio_byte_file.raw"
-    # espnet.get_byte_data(text_file_path, output_path)
+    # Initialize output file path and and getbyte data
+    output_path = "audio_byte_file.raw"
+    espnet.get_byte_data(text_file_path, output_path)
     
-    # # Generate audio from text file
-    # espnet.get_audio(text_file_path)
+    # Generate audio from text file
+    espnet.get_audio(text_file_path)
 
     # Generate the audio-query JSON file
     audio_path = "japanesef32.wav"
     espnet.audio_query_json(audio_path)
-
-

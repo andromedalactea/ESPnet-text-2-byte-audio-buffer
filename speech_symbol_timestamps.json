@@ -1,5 +1,5 @@
 {
-    "transcription": "私は文別市に来ました。おすすめの観光スポットはありますか?",
+    "transcription": "私は門別市に来ました、おすすめの観光スポットはありますか。",
     "words": [
         {
             "symbols": [
@@ -21,11 +21,11 @@
                 {
                     "text": "は",
                     "start": 0.44,
-                    "end": 0.68,
-                    "vowel_consonant_length": 0.24,
+                    "end": 0.7,
+                    "vowel_consonant_length": 0.26,
                     "consonant": "h",
                     "vowel": "a",
-                    "pitch": 2290.41
+                    "pitch": 2106.57
                 }
             ],
             "is_interrogative": false,
@@ -34,28 +34,28 @@
         {
             "symbols": [
                 {
-                    "text": "文",
-                    "start": 0.68,
-                    "end": 0.88,
+                    "text": "門",
+                    "start": 0.7,
+                    "end": 0.9,
                     "vowel_consonant_length": 0.2,
-                    "consonant": "b",
-                    "vowel": "un",
-                    "pitch": 85.09
+                    "consonant": null,
+                    "vowel": null,
+                    "pitch": 86.32
                 }
             ],
             "is_interrogative": false,
-            "complete_word": "文"
+            "complete_word": "門"
         },
         {
             "symbols": [
                 {
                     "text": "別",
-                    "start": 0.88,
-                    "end": 1.14,
-                    "vowel_consonant_length": 0.26,
+                    "start": 0.9,
+                    "end": 1.12,
+                    "vowel_consonant_length": 0.22,
                     "consonant": "b",
                     "vowel": "etsu",
-                    "pitch": 200.51
+                    "pitch": 208.02
                 }
             ],
             "is_interrogative": false,
@@ -65,12 +65,12 @@
             "symbols": [
                 {
                     "text": "市",
-                    "start": 1.14,
+                    "start": 1.12,
                     "end": 1.36,
-                    "vowel_consonant_length": 0.22,
+                    "vowel_consonant_length": 0.24,
                     "consonant": "sh",
                     "vowel": "i",
-                    "pitch": 3691.97
+                    "pitch": 2891.2
                 }
             ],
             "is_interrogative": false,
@@ -81,11 +81,11 @@
                 {
                     "text": "に",
                     "start": 1.36,
-                    "end": 1.46,
-                    "vowel_consonant_length": 0.1,
+                    "end": 1.48,
+                    "vowel_consonant_length": 0.12,
                     "consonant": "n",
                     "vowel": "i",
-                    "pitch": 202.78
+                    "pitch": 196.95
                 }
             ],
             "is_interrogative": false,
@@ -95,12 +95,12 @@
             "symbols": [
                 {
                     "text": "来",
-                    "start": 1.46,
+                    "start": 1.48,
                     "end": 1.6,
-                    "vowel_consonant_length": 0.14,
+                    "vowel_consonant_length": 0.12,
                     "consonant": "r",
                     "vowel": "ai",
-                    "pitch": 2184.04
+                    "pitch": 2601.52
                 }
             ],
             "is_interrogative": false,
@@ -127,7 +127,7 @@
                     "pitch": 2862.93
                 },
                 {
-                    "text": "た。",
+                    "text": "た、",
                     "start": 1.8133,
                     "end": 1.92,
                     "vowel_consonant_length": 0.1067,
@@ -137,18 +137,18 @@
                 }
             ],
             "is_interrogative": false,
-            "complete_word": "ました。"
+            "complete_word": "ました、"
         },
         {
             "symbols": [
                 {
                     "text": "お",
-                    "start": 2.34,
-                    "end": 2.56,
-                    "vowel_consonant_length": 0.22,
+                    "start": 2.2,
+                    "end": 2.6,
+                    "vowel_consonant_length": 0.4,
                     "consonant": null,
                     "vowel": "o",
-                    "pitch": 95.43
+                    "pitch": 156.14
                 }
             ],
             "is_interrogative": false,
@@ -158,12 +158,12 @@
             "symbols": [
                 {
                     "text": "す",
-                    "start": 2.56,
-                    "end": 2.68,
-                    "vowel_consonant_length": 0.12,
+                    "start": 2.6,
+                    "end": 2.74,
+                    "vowel_consonant_length": 0.14,
                     "consonant": "s",
                     "vowel": "u",
-                    "pitch": 3058.21
+                    "pitch": 3205.74
                 }
             ],
             "is_interrogative": false,
@@ -173,12 +173,12 @@
             "symbols": [
                 {
                     "text": "す",
-                    "start": 2.68,
+                    "start": 2.74,
                     "end": 2.82,
-                    "vowel_consonant_length": 0.14,
+                    "vowel_consonant_length": 0.08,
                     "consonant": "s",
                     "vowel": "u",
-                    "pitch": 1171.75
+                    "pitch": 2255.16
                 }
             ],
             "is_interrogative": false,
@@ -204,11 +204,11 @@
                 {
                     "text": "の",
                     "start": 2.94,
-                    "end": 3.1,
-                    "vowel_consonant_length": 0.16,
+                    "end": 3.08,
+                    "vowel_consonant_length": 0.14,
                     "consonant": "n",
                     "vowel": "o",
-                    "pitch": 203.21
+                    "pitch": 203.4
                 }
             ],
             "is_interrogative": false,
@@ -218,12 +218,12 @@
             "symbols": [
                 {
                     "text": "観",
-                    "start": 3.1,
-                    "end": 3.28,
-                    "vowel_consonant_length": 0.18,
+                    "start": 3.08,
+                    "end": 3.32,
+                    "vowel_consonant_length": 0.24,
                     "consonant": "k",
                     "vowel": "an",
-                    "pitch": 522.52
+                    "pitch": 410.29
                 }
             ],
             "is_interrogative": false,
@@ -233,12 +233,12 @@
             "symbols": [
                 {
                     "text": "光",
-                    "start": 3.28,
-                    "end": 3.48,
+                    "start": 3.32,
+                    "end": 3.52,
                     "vowel_consonant_length": 0.2,
                     "consonant": "h",
                     "vowel": "ikari",
-                    "pitch": 247.61
+                    "pitch": 259.48
                 }
             ],
             "is_interrogative": false,
@@ -248,12 +248,12 @@
             "symbols": [
                 {
                     "text": "ス",
-                    "start": 3.48,
-                    "end": 3.66,
-                    "vowel_consonant_length": 0.18,
+                    "start": 3.52,
+                    "end": 3.68,
+                    "vowel_consonant_length": 0.16,
                     "consonant": "s",
                     "vowel": "u",
-                    "pitch": 1665.38
+                    "pitch": 2703.14
                 }
             ],
             "is_interrogative": false,
@@ -263,12 +263,12 @@
             "symbols": [
                 {
                     "text": "ポ",
-                    "start": 3.66,
+                    "start": 3.68,
                     "end": 3.8,
-                    "vowel_consonant_length": 0.14,
+                    "vowel_consonant_length": 0.12,
                     "consonant": "p",
                     "vowel": "o",
-                    "pitch": 2694.99
+                    "pitch": 2202.6
                 }
             ],
             "is_interrogative": false,
@@ -279,11 +279,11 @@
                 {
                     "text": "ット",
                     "start": 3.8,
-                    "end": 3.96,
-                    "vowel_consonant_length": 0.16,
+                    "end": 4.02,
+                    "vowel_consonant_length": 0.22,
                     "consonant": "t",
                     "vowel": "o",
-                    "pitch": 257.94
+                    "pitch": 228.06
                 }
             ],
             "is_interrogative": false,
@@ -293,12 +293,12 @@
             "symbols": [
                 {
                     "text": "は",
-                    "start": 3.96,
-                    "end": 4.14,
-                    "vowel_consonant_length": 0.18,
+                    "start": 4.02,
+                    "end": 4.16,
+                    "vowel_consonant_length": 0.14,
                     "consonant": "h",
                     "vowel": "a",
-                    "pitch": 194.68
+                    "pitch": 189.03
                 }
             ],
             "is_interrogative": false,
@@ -308,39 +308,39 @@
             "symbols": [
                 {
                     "text": "あ",
-                    "start": 4.14,
-                    "end": 4.205,
-                    "vowel_consonant_length": 0.065,
+                    "start": 4.16,
+                    "end": 4.22,
+                    "vowel_consonant_length": 0.06,
                     "consonant": null,
                     "vowel": "a",
-                    "pitch": 105.55
+                    "pitch": 136.01
                 },
                 {
                     "text": "り",
-                    "start": 4.205,
-                    "end": 4.27,
-                    "vowel_consonant_length": 0.065,
+                    "start": 4.22,
+                    "end": 4.28,
+                    "vowel_consonant_length": 0.06,
                     "consonant": "r",
                     "vowel": "i",
-                    "pitch": 217.61
+                    "pitch": 240.2
                 },
                 {
                     "text": "ま",
-                    "start": 4.27,
-                    "end": 4.335,
-                    "vowel_consonant_length": 0.065,
+                    "start": 4.28,
+                    "end": 4.34,
+                    "vowel_consonant_length": 0.06,
                     "consonant": "m",
                     "vowel": "a",
-                    "pitch": 93.02
+                    "pitch": 106.63
                 },
                 {
                     "text": "す",
-                    "start": 4.335,
+                    "start": 4.34,
                     "end": 4.4,
-                    "vowel_consonant_length": 0.065,
+                    "vowel_consonant_length": 0.06,
                     "consonant": "s",
                     "vowel": "u",
-                    "pitch": 129.28
+                    "pitch": 144.73
                 }
             ],
             "is_interrogative": false,
@@ -349,7 +349,7 @@
         {
             "symbols": [
                 {
-                    "text": "か?",
+                    "text": "か。",
                     "start": 4.4,
                     "end": 4.7,
                     "vowel_consonant_length": 0.3,
@@ -359,7 +359,7 @@
                 }
             ],
             "is_interrogative": true,
-            "complete_word": "か?"
+            "complete_word": "か。"
         }
     ],
     "speedScale": null,
@@ -370,5 +370,5 @@
     "postPhonemeLength": null,
     "outputSamplingRate": 24000,
     "outputStereo": null,
-    "kana": "私は文別市に来ました。おすすめの観光スポットはありますか?"
+    "kana": "私は門別市に来ました、おすすめの観光スポットはありますか。"
 }
