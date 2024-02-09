@@ -9,6 +9,8 @@ from espnet2.utils.types import str_or_none
 from scipy.io.wavfile import write
 import whisper_timestamped
 
+# Local application imports
+from auxiliar_functions_for_audio_query import distribute_time_equally, add_consonant_vowel_info, calculate_pitch
 
 
 
@@ -144,120 +146,109 @@ class ESPnetTextToByte:
         # Write the WAV data to an audio file in WAV format
         write("audio.wav", samplerate, wavdata)
 
-    def audio_query(self, audio_path, save_to_file=True, json_output_path="speech_symbol_timestamps.json"):
+    def audio_query_json(self, audio_path, save_to_file=True, json_output_path="speech_symbol_timestamps.json", mapping_file="files/mapping.json"):
         """
-        Transcribes an audio file to text using the Whisper model and generates a JSON
-        file with the transcription and timestamps for each word and its symbols.
-
+        Transcribes an audio file to text, enriches each transcribed word with detailed phonetic information 
+        (consonants and vowels), calculates the pitch for each symbol, and identifies interrogative sentences.
+        
         Parameters:
-        - audio_path (str): Path to the audio file to be transcribed.
-        - save_to_file (bool, optional): Whether to save the transcription results to a JSON file. Defaults to True.
-        - json_output_path (str, optional): Path where the JSON file with transcription results will be saved. Defaults to "speech_symbol_timestamps.json".
-
+        - audio_path (str): The path to the audio file for transcription.
+        - save_to_file (bool): Whether to save the output to a JSON file. Defaults to False.
+        - json_output_path (str): Path where the JSON output will be saved if save_to_file is True.
+        - mapping_file (str): Path to the JSON file containing mappings for consonant and vowel information.
+        
         Returns:
-        - JSON: A JSON containing the complete transcription and detailed segments with timestamps.
-
-        The function performs the following steps:
-        - Loads the Whisper model specified for transcription.
-        - Transcribes the audio file, specifying Japanese as the language.
-        - Distributes the time equally among the symbols of each transcribed word.
-        - Prepares and optionally saves the transcription and timestamps in a structured JSON format.
+        - dict: A dictionary containing the complete transcription, word details including phonetic information, 
+                pitch, and whether each word forms a question, along with some metadata about the audio processing.
         """
-
-        # Check if the audio file exists
-        if not os.path.exists(audio_path):
-            print(f"Error: The audio file '{audio_path}' does not exist.")
-            return  # Stops the function execution if the file does not exist
-
-        # Load the desired Whisper model. Specify the model type and the device (CPU or GPU).
-        model = whisper_timestamped.load_model("base", device=self.device)
-        
-        # Transcribe the audio file to text. The language parameter is set to Japanese ('ja').
+        # Load the model and transcribe the audio
+        model = whisper_timestamped.load_model("base", device="cpu")
         result = whisper_timestamped.transcribe(model, audio_path, language="ja")
-        
-        # Print the complete transcription to the console for immediate viewing.
         print("Complete transcription:", result["text"])
-        
-        # This nested function calculates the time duration for each symbol within a word.
-        # It ensures that the timestamps are distributed evenly across all symbols.
-        def distribute_time_equally(start, end, text, decimals=4):
-            duration = end - start  # Calculate the total duration of the word.
-            num_symbols = len(text)  # Count the number of symbols in the word.
-            duration_per_symbol = duration / num_symbols  # Calculate duration per symbol.
-            symbols_times = []  # Initialize a list to store the timestamps of each symbol.
-            for i in range(num_symbols):
-                # Calculate the start and end time for each symbol.
-                symbol_start = start + i * duration_per_symbol
-                symbol_end = start + (i + 1) * duration_per_symbol
-                # Append the symbol's text and its start/end times to the list.
-                symbols_times.append({
-                    "text": text[i],
-                    "start": round(symbol_start, decimals),
-                    "end": round(symbol_end, decimals)
-                })
-            return symbols_times  # Return the list of timestamps for each symbol.
-        
-        # Initialize a dictionary to store the complete transcription and timestamps for each segment.
-        data_to_save = {
+
+        # Initialize the main dictionary to store the transcription and word details
+        audio_query_data = {
             "transcription": result["text"],
-            "segments": []
+            "words": []
         }
-        
-        # Process each segment from the transcription results.
+
+        # Process each word in the transcription
         for segment in result["segments"]:
-            # Initialize a dictionary to store segment details and symbol timestamps.
-            segment_info = {
-                "segment_id": segment['id'],
-                "start": segment['start'],
-                "end": segment['end'],
-                "symbols": []
-            }
-            # Process each word in the segment to distribute timestamps among its symbols.
             for word in segment.get("words", []):
+                # Distribute time equally among the symbols of the word
                 symbols_times = distribute_time_equally(word['start'], word['end'], word['text'])
-                segment_info["symbols"].extend(symbols_times)  # Append symbol timestamps to the segment.
-            data_to_save["segments"].append(segment_info)  # Append the segment information to the main data.
-        
-        # Check if the transcription results should be saved to a JSON file.
+
+                # Add consonant and vowel information to each symbol
+                symbols_times = add_consonant_vowel_info(symbols_times, mapping_file)
+                
+                # Calculate and add pitch information to each symbol
+                symbols_times = calculate_pitch(audio_path, symbols_times)
+
+                # Create a dictionary for each word with its details
+                word_detail = {
+                    "symbols": symbols_times,
+                    "is_interrogative": "か" in word['text'] or "?" in word['text'],  # Check if the word is interrogative
+                    "complete_word": word['text']
+                }
+                
+                # Add the detailed word to the list
+                audio_query_data["words"].append(word_detail)
+
+        # Add additional metadata related to the audio processing
+        metadata = {
+            "speedScale": None,
+            "pitchScale": None,
+            "intonationScale": None,
+            "volumeScale": None,
+            "prePhonemeLength": None,
+            "postPhonemeLength": None,
+            "outputSamplingRate": 24000,  # Set the output sampling rate explicitly
+            "outputStereo": None,
+            "kana": result["text"]  # The transcribed text in Kana
+        }
+
+        # Update the main dictionary with the metadata
+        audio_query_data.update(metadata)
+
+        # Save the results to a file if requested
         if save_to_file:
-            # Open the specified JSON file in write mode and save the transcription data.
             with open(json_output_path, 'w', encoding='utf-8') as json_file:
-                json.dump(data_to_save, json_file, ensure_ascii=False, indent=4)
-            print(f"Results saved in: {json_output_path}")  # Print the path to the saved JSON file.
+                json.dump(audio_query_data, json_file, ensure_ascii=False, indent=4)
+            print(f"Results saved in: {json_output_path}")
         
-        return data_to_save  # Return the transcription data as a JSON object.
+        return audio_query_data
 
 
 
 if __name__ == "__main__":
     
-    # File paths for the pre-trained model, configuration, and input text
-    model_path = "model/train.total_count.ave_10best.pth"
-    config_file_path = "model/config.yaml"
-    text_file_path = "text.txt"
+    # # File paths for the pre-trained model, configuration, and input text
+    # model_path = "model/train.total_count.ave_10best.pth"
+    # config_file_path = "model/config.yaml"
+    # text_file_path = "text.txt"
 
-    # Vocoder tag specifying the type of vocoder to be used
-    # its a voice encoder. it works by separate the carrier signal (which typically represents the spectral content of the voice) and the modulator signal (which represents the characteristics such as pitch and intensity).
-    vocoder_tag = "none" # we can use vocoder_tag Parallel WaveGAN, and MelGAN  
+    # # Vocoder tag specifying the type of vocoder to be used
+    # # its a voice encoder. it works by separate the carrier signal (which typically represents the spectral content of the voice) and the modulator signal (which represents the characteristics such as pitch and intensity).
+    # vocoder_tag = "none" # we can use vocoder_tag Parallel WaveGAN, and MelGAN  
 
-    # Device on which the model will be loaded (default is "cpu")
-    device = "cpu"  # Change to "cuda" for GPU acceleration if a compatible GPU is available
+    # # Device on which the model will be loaded (default is "cpu")
+    # device = "cpu"  # Change to "cuda" for GPU acceleration if a compatible GPU is available
 
     
 
-    # Initialize the espnet model
+    # # Initialize the espnet model
     espnet = ESPnetTextToByte()
-    espnet.build(model_path, config_file_path, vocoder_tag, device)
+    # espnet.build(model_path, config_file_path, vocoder_tag, device)
 
-    # Initialize output file path and and getbyte data
-    output_path = "audio_byte_file.raw"
-    espnet.get_byte_data(text_file_path, output_path)
+    # # Initialize output file path and and getbyte data
+    # output_path = "audio_byte_file.raw"
+    # espnet.get_byte_data(text_file_path, output_path)
     
-    # Generate audio from text file
-    espnet.get_audio(text_file_path)
+    # # Generate audio from text file
+    # espnet.get_audio(text_file_path)
 
     # Generate the audio-query JSON file
-    audio_path = "audio.wav"
-    espnet.audio_query(audio_path)
+    audio_path = "japanesef32.wav"
+    espnet.audio_query_json(audio_path)
 
 

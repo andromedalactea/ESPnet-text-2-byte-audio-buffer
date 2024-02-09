@@ -1,99 +1,374 @@
 {
-    "transcription": "本日は音声ごせいの説開よーごそう",
-    "segments": [
+    "transcription": "私は文別市に来ました。おすすめの観光スポットはありますか?",
+    "words": [
         {
-            "segment_id": 0,
-            "start": 0.0,
-            "end": 1.58,
             "symbols": [
                 {
-                    "text": "本",
-                    "start": 0.0,
-                    "end": 0.14
-                },
-                {
-                    "text": "日",
+                    "text": "私",
                     "start": 0.14,
-                    "end": 0.36
-                },
-                {
-                    "text": "は",
-                    "start": 0.36,
-                    "end": 0.56
-                },
-                {
-                    "text": "音",
-                    "start": 0.56,
-                    "end": 0.74
-                },
-                {
-                    "text": "声",
-                    "start": 0.74,
-                    "end": 0.88
-                },
-                {
-                    "text": "ご",
-                    "start": 0.88,
-                    "end": 1.0
-                },
-                {
-                    "text": "せ",
-                    "start": 1.0,
-                    "end": 1.1
-                },
-                {
-                    "text": "い",
-                    "start": 1.1,
-                    "end": 1.2
-                },
-                {
-                    "text": "の",
-                    "start": 1.2,
-                    "end": 1.22
-                },
-                {
-                    "text": "説",
-                    "start": 1.22,
-                    "end": 1.42
-                },
-                {
-                    "text": "開",
-                    "start": 1.42,
-                    "end": 1.58
+                    "end": 0.44,
+                    "vowel_consonant_length": 0.3,
+                    "consonant": "w",
+                    "vowel": "atashi",
+                    "pitch": 95.65
                 }
-            ]
+            ],
+            "is_interrogative": false,
+            "complete_word": "私"
         },
         {
-            "segment_id": 1,
-            "start": 1.76,
-            "end": 2.52,
             "symbols": [
                 {
-                    "text": "よ",
-                    "start": 1.76,
-                    "end": 2.0
-                },
-                {
-                    "text": "ー",
-                    "start": 2.0,
-                    "end": 2.14
-                },
-                {
-                    "text": "ご",
-                    "start": 2.14,
-                    "end": 2.3
-                },
-                {
-                    "text": "そ",
-                    "start": 2.3,
-                    "end": 2.41
-                },
-                {
-                    "text": "う",
-                    "start": 2.41,
-                    "end": 2.52
+                    "text": "は",
+                    "start": 0.44,
+                    "end": 0.68,
+                    "vowel_consonant_length": 0.24,
+                    "consonant": "h",
+                    "vowel": "a",
+                    "pitch": 2290.41
                 }
-            ]
+            ],
+            "is_interrogative": false,
+            "complete_word": "は"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "文",
+                    "start": 0.68,
+                    "end": 0.88,
+                    "vowel_consonant_length": 0.2,
+                    "consonant": "b",
+                    "vowel": "un",
+                    "pitch": 85.09
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "文"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "別",
+                    "start": 0.88,
+                    "end": 1.14,
+                    "vowel_consonant_length": 0.26,
+                    "consonant": "b",
+                    "vowel": "etsu",
+                    "pitch": 200.51
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "別"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "市",
+                    "start": 1.14,
+                    "end": 1.36,
+                    "vowel_consonant_length": 0.22,
+                    "consonant": "sh",
+                    "vowel": "i",
+                    "pitch": 3691.97
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "市"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "に",
+                    "start": 1.36,
+                    "end": 1.46,
+                    "vowel_consonant_length": 0.1,
+                    "consonant": "n",
+                    "vowel": "i",
+                    "pitch": 202.78
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "に"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "来",
+                    "start": 1.46,
+                    "end": 1.6,
+                    "vowel_consonant_length": 0.14,
+                    "consonant": "r",
+                    "vowel": "ai",
+                    "pitch": 2184.04
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "来"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "ま",
+                    "start": 1.6,
+                    "end": 1.7067,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "m",
+                    "vowel": "a",
+                    "pitch": 80.72
+                },
+                {
+                    "text": "し",
+                    "start": 1.7067,
+                    "end": 1.8133,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "sh",
+                    "vowel": "i",
+                    "pitch": 2862.93
+                },
+                {
+                    "text": "た。",
+                    "start": 1.8133,
+                    "end": 1.92,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "t",
+                    "vowel": "a",
+                    "pitch": 2266.33
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "ました。"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "お",
+                    "start": 2.34,
+                    "end": 2.56,
+                    "vowel_consonant_length": 0.22,
+                    "consonant": null,
+                    "vowel": "o",
+                    "pitch": 95.43
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "お"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "す",
+                    "start": 2.56,
+                    "end": 2.68,
+                    "vowel_consonant_length": 0.12,
+                    "consonant": "s",
+                    "vowel": "u",
+                    "pitch": 3058.21
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "す"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "す",
+                    "start": 2.68,
+                    "end": 2.82,
+                    "vowel_consonant_length": 0.14,
+                    "consonant": "s",
+                    "vowel": "u",
+                    "pitch": 1171.75
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "す"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "め",
+                    "start": 2.82,
+                    "end": 2.94,
+                    "vowel_consonant_length": 0.12,
+                    "consonant": "m",
+                    "vowel": "e",
+                    "pitch": 196.42
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "め"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "の",
+                    "start": 2.94,
+                    "end": 3.1,
+                    "vowel_consonant_length": 0.16,
+                    "consonant": "n",
+                    "vowel": "o",
+                    "pitch": 203.21
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "の"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "観",
+                    "start": 3.1,
+                    "end": 3.28,
+                    "vowel_consonant_length": 0.18,
+                    "consonant": "k",
+                    "vowel": "an",
+                    "pitch": 522.52
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "観"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "光",
+                    "start": 3.28,
+                    "end": 3.48,
+                    "vowel_consonant_length": 0.2,
+                    "consonant": "h",
+                    "vowel": "ikari",
+                    "pitch": 247.61
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "光"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "ス",
+                    "start": 3.48,
+                    "end": 3.66,
+                    "vowel_consonant_length": 0.18,
+                    "consonant": "s",
+                    "vowel": "u",
+                    "pitch": 1665.38
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "ス"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "ポ",
+                    "start": 3.66,
+                    "end": 3.8,
+                    "vowel_consonant_length": 0.14,
+                    "consonant": "p",
+                    "vowel": "o",
+                    "pitch": 2694.99
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "ポ"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "ット",
+                    "start": 3.8,
+                    "end": 3.96,
+                    "vowel_consonant_length": 0.16,
+                    "consonant": "t",
+                    "vowel": "o",
+                    "pitch": 257.94
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "ット"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "は",
+                    "start": 3.96,
+                    "end": 4.14,
+                    "vowel_consonant_length": 0.18,
+                    "consonant": "h",
+                    "vowel": "a",
+                    "pitch": 194.68
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "は"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "あ",
+                    "start": 4.14,
+                    "end": 4.205,
+                    "vowel_consonant_length": 0.065,
+                    "consonant": null,
+                    "vowel": "a",
+                    "pitch": 105.55
+                },
+                {
+                    "text": "り",
+                    "start": 4.205,
+                    "end": 4.27,
+                    "vowel_consonant_length": 0.065,
+                    "consonant": "r",
+                    "vowel": "i",
+                    "pitch": 217.61
+                },
+                {
+                    "text": "ま",
+                    "start": 4.27,
+                    "end": 4.335,
+                    "vowel_consonant_length": 0.065,
+                    "consonant": "m",
+                    "vowel": "a",
+                    "pitch": 93.02
+                },
+                {
+                    "text": "す",
+                    "start": 4.335,
+                    "end": 4.4,
+                    "vowel_consonant_length": 0.065,
+                    "consonant": "s",
+                    "vowel": "u",
+                    "pitch": 129.28
+                }
+            ],
+            "is_interrogative": false,
+            "complete_word": "あります"
+        },
+        {
+            "symbols": [
+                {
+                    "text": "か?",
+                    "start": 4.4,
+                    "end": 4.7,
+                    "vowel_consonant_length": 0.3,
+                    "consonant": "k",
+                    "vowel": "a",
+                    "pitch": 155.96
+                }
+            ],
+            "is_interrogative": true,
+            "complete_word": "か?"
         }
-    ]
+    ],
+    "speedScale": null,
+    "pitchScale": null,
+    "intonationScale": null,
+    "volumeScale": null,
+    "prePhonemeLength": null,
+    "postPhonemeLength": null,
+    "outputSamplingRate": 24000,
+    "outputStereo": null,
+    "kana": "私は文別市に来ました。おすすめの観光スポットはありますか?"
 }
