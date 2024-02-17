@@ -3,14 +3,14 @@ import json
 import os
 
 # Third-party imports
-import torch
-from espnet2.bin.tts_inference import Text2Speech
-from espnet2.utils.types import str_or_none
-from scipy.io.wavfile import write
+# import torch
+# from espnet2.bin.tts_inference import Text2Speech
+# from espnet2.utils.types import str_or_none
+# from scipy.io.wavfile import write
 import whisper_timestamped
 
 # Local application imports
-from auxiliar_functions_for_audio_query import distribute_time_equally, add_consonant_vowel_info, calculate_pitch
+from auxiliar_functions_for_audio_query import distribute_time_equally, add_consonant_vowel_info, calculate_pitch, time_for_vowels_and_consonants
 
 
 
@@ -162,19 +162,26 @@ class ESPnetTextToByte:
                 pitch, and whether each word forms a question, along with some metadata about the audio processing.
         """
         # Load the model and transcribe the audio
-        model = whisper_timestamped.load_model("small", device=self.device)
+        model = whisper_timestamped.load_model("base", device="cpu")
         result = whisper_timestamped.transcribe(model, audio_path, language="ja")
         print("Complete transcription:", result["text"])
-
+        print(result)
         # Initialize the main dictionary to store the transcription and word details
         audio_query_data = {
             "transcription": result["text"],
-            "words": []
+            "accent_phrases": []
         }
-
+        last_word_time = 0
         # Process each word in the transcription
         for segment in result["segments"]:
             for word in segment.get("words", []):
+                # Verify the last word time
+                if word['start'] == last_word_time:
+                    pause_mora = None
+                else:
+                    pause_mora = word['start'] - last_word_time
+                last_word_time = word['end']
+
                 # Distribute time equally among the symbols of the word
                 symbols_times = distribute_time_equally(word['start'], word['end'], word['text'])
 
@@ -184,26 +191,39 @@ class ESPnetTextToByte:
                 # Calculate and add pitch information to each symbol
                 symbols_times = calculate_pitch(audio_path, symbols_times)
 
+                # Calculate the vowels and consonants lenghts for each symbol
+                symbols_times = time_for_vowels_and_consonants(symbols_times)
+            
                 # Create a dictionary for each word with its details
                 word_detail = {
-                    "symbols": symbols_times,
+                    "moras": symbols_times,
+                    "accent": 0,  # Default accent value
                     "is_interrogative": "か" in word['text'] or "?" in word['text'],  # Check if the word is interrogative
-                    "complete_word": word['text']
+                    "complete_word": word['text'],
+                    "pause_mora": None if pause_mora is None else 
+                    {
+                            "text": " ",
+                            "consonant": None,
+                            "consonant_length": None,
+                            "vowel": "pau",
+                            "vowel_length": pause_mora,
+                            "pitch": 0.0
+                        }
                 }
                 
                 # Add the detailed word to the list
-                audio_query_data["words"].append(word_detail)
+                audio_query_data["accent_phrases"].append(word_detail)
 
         # Add additional metadata related to the audio processing
         metadata = {
-            "speedScale": None,
-            "pitchScale": None,
-            "intonationScale": None,
-            "volumeScale": None,
-            "prePhonemeLength": None,
-            "postPhonemeLength": None,
+            "speedScale": 1.0,
+            "pitchScale": 0.0,
+            "intonationScale": 1.0,
+            "volumeScale": 1.0,
+            "prePhonemeLength": 0.1,
+            "postPhonemeLength": 0.1,
             "outputSamplingRate": 24000,  # Set the output sampling rate explicitly
-            "outputStereo": None,
+            "outputStereo": False,
             "kana": result["text"]  # The transcribed text in Kana
         }
 
@@ -215,8 +235,8 @@ class ESPnetTextToByte:
             with open(json_output_path, 'w', encoding='utf-8') as json_file:
                 json.dump(audio_query_data, json_file, ensure_ascii=False, indent=4)
             print(f"Results saved in: {json_output_path}")
-        
-        return audio_query_data
+            
+            return audio_query_data
 
 
 
@@ -236,14 +256,14 @@ if __name__ == "__main__":
 
     # Initialize the espnet model
     espnet = ESPnetTextToByte()
-    espnet.build(model_path, config_file_path, vocoder_tag, device)
+    # espnet.build(model_path, config_file_path, vocoder_tag, device)
 
-    # Initialize output file path and and getbyte data
-    output_path = "audio_byte_file.raw"
-    espnet.get_byte_data(text_file_path, output_path)
+    # # Initialize output file path and and getbyte data
+    # output_path = "audio_byte_file.raw"
+    # espnet.get_byte_data(text_file_path, output_path)
     
-    # Generate audio from text file
-    espnet.get_audio(text_file_path)
+    # # Generate audio from text file
+    # espnet.get_audio(text_file_path)
 
     # Generate the audio-query JSON file
     audio_path = "japanesef32.wav"

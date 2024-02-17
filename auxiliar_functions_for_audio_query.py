@@ -59,7 +59,7 @@ def calculate_pitch(audio_path, symbols, sample_rate=24000):
         avg_pitch = sum(pitch_list) / len(pitch_list) if pitch_list else 0
 
         # Update the current symbol with its average pitch.
-        symbol["pitch"] = round(avg_pitch, 2)
+        symbol["pitch"] = round(avg_pitch/1000, 7) # The final units are kHz.
 
     return symbols  # Return the updated list of symbols with pitch information.
 
@@ -170,3 +170,85 @@ def add_consonant_vowel_info(symbols, mapping_file):
         symbol["vowel"] = char_info.get("vowel", None)
     
     return symbols  # Return the updated list of symbols with added phonetic information.
+
+
+def time_for_vowels_and_consonants(symbols):
+    """
+    Calculate and assign duration times to vowels and consonants within a list of symbolic representations.
+
+    This function iterates over a list of symbol dictionaries, each representing a linguistic or phonetic
+    symbol with associated metadata. It calculates the duration times for vowels and consonants based on
+    predefined time allocation rules: each vowel is allocated four times the base duration unit, whereas
+    each consonant is allocated one base duration unit. The function updates each symbol dictionary to
+    include this calculated duration time for both vowels and consonants.
+
+    Parameters:
+    - symbols (list of dict): Each dictionary in the list should include the following keys:
+        - 'text' (str): The textual representation of the symbol.
+        - 'vowel_consonant_length' (float): The total duration allocated for both vowels and consonants.
+        - 'vowel' (str or None): A string of vowels present in the symbol, or None if no vowels.
+        - 'consonant' (str or None): A string of consonants present in the symbol, or None if no consonants.
+
+    Returns:
+    - list of dict: The input list, with each symbol dictionary updated to include two additional keys:
+        - 'vowel_length' (float or None): The calculated duration for vowels, rounded to 4 decimal places;
+          None if the symbol contains no vowels.
+        - 'consonant_length' (float or None): The calculated duration for consonants, rounded to 4 decimal
+          places; None if the symbol contains no consonants.
+    """
+    for symbol in symbols:
+        # Identify the presence and count of vowels and consonants in the current symbol.
+        vowels = symbol.get('vowel')
+        consonants = symbol.get('consonant')
+        len_vowels = len(vowels) if vowels else 0
+        len_consonants = len(consonants) if consonants else 0
+
+        # Compute the base time unit by dividing the total time by the weighted sum of vowels and consonants.
+        total_time = symbol['vowel_consonant_length']
+        if len_vowels or len_consonants:
+            fraction_time = total_time / (len_vowels * 4 + len_consonants)
+        else:
+            fraction_time = 0  # Avoid division by zero when there are no vowels or consonants.
+
+        # Calculate the total time dedicated to vowels and consonants based on their counts.
+        time_vowels = fraction_time * 4 * len_vowels
+        time_consonants = fraction_time * len_consonants
+        
+        # Update the symbol dictionary with calculated times, rounding to 4 decimal places.
+        symbol['vowel_length'] = round(time_vowels, 4) if len_vowels > 0 else None
+        symbol['consonant_length'] = round(time_consonants, 4) if len_consonants > 0 else None
+
+    return symbols
+
+
+if __name__ == "__main__":
+    print(time_for_vowels_and_consonants(
+        [
+                {
+                    "text": "ま",
+                    "start": 1.6,
+                    "end": 1.7067,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "m",
+                    "vowel": "a",
+                    "pitch": 80.72
+                },
+                {
+                    "text": "し",
+                    "start": 1.7067,
+                    "end": 1.8133,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "sh",
+                    "vowel": "i",
+                    "pitch": 2862.93
+                },
+                {
+                    "text": "た。",
+                    "start": 1.8133,
+                    "end": 1.92,
+                    "vowel_consonant_length": 0.1067,
+                    "consonant": "t",
+                    "vowel": "a",
+                    "pitch": 2266.33
+                }
+            ]))
